@@ -12,7 +12,30 @@ function CustomModelTrainingArgs() {
     const [csrfToken, setCsrfToken] = useState('');
     const [responseData, setResponseData] = useState('');
     const [bounce, setBounce] = useState('');
-    const [customTrainingArgs, setCustomTrainingArgs] = useState({"d_model": 768, "debug": true, "layer_norm_eps": 0.00005, "d_vocab": 50257, "init_range": 0.02, "n_ctx": 1024, "d_head": 64, "d_mlp": 3072, "n_heads": 12, "n_layers": 12, "gpu_ip": " ", "username": " ", "password": " "});
+    const [customTrainingArgs, setCustomTrainingArgs] = useState({
+        "d_model": 768, 
+        "debug": true, 
+        "layer_norm_eps": 0.00005, 
+        "d_vocab": 50257, 
+        "init_range": 0.02, 
+        "n_ctx": 1024, 
+        "d_head": 64, 
+        "d_mlp": 3072, 
+        "n_heads": 12, 
+        "n_layers": 12, 
+        "d_model2": 768, 
+        "debug2": true, 
+        "layer_norm_eps2": 0.00005, 
+        "d_vocab2": 50257, 
+        "init_range2": 0.02, 
+        "n_ctx2": 1024, 
+        "d_head2": 64, 
+        "d_mlp2": 3072, 
+        "n_heads2": 12, 
+        "n_layers2": 12, 
+        "gpu_ip": " ", 
+        "username": " ", 
+        "password": " "});
 
     const handleChange_d_model = (event) => {
         customTrainingArgs['d_model'] = event.target.value
@@ -52,6 +75,46 @@ function CustomModelTrainingArgs() {
     };
     const handleChange_n_layers = (event) => {
         customTrainingArgs['n_layers'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_d_model2 = (event) => {
+        customTrainingArgs['d_model2'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_debug2 = (event) => {
+        customTrainingArgs['debug2'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_layer_norm_eps2 = (event) => {
+        customTrainingArgs['layer_norm_eps2'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_d_vocab2 = (event) => {
+        customTrainingArgs['d_vocab2'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_init_range2 = (event) => {
+        customTrainingArgs['init_range2'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_n_ctx2 = (event) => {
+        customTrainingArgs['n_ctx2'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_d_head2 = (event) => {
+        customTrainingArgs['d_head2'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_d_mlp2 = (event) => {
+        customTrainingArgs['d_mlp2'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_n_heads2 = (event) => {
+        customTrainingArgs['n_heads2'] = event.target.value
+        setCustomTrainingArgs({...customTrainingArgs})
+    };
+    const handleChange_n_layers2 = (event) => {
+        customTrainingArgs['n_layers2'] = event.target.value
         setCustomTrainingArgs({...customTrainingArgs})
     };
     const handleChange_gpu_ip = (event) => {
@@ -126,7 +189,7 @@ function CustomModelTrainingArgs() {
             onSubmit={postCustomTrainingArgs}
             >
             <div>
-                <h1>Custom Training Hyperparameters</h1>
+                <h1>Custom Training Hyperparameters (small-model)</h1>
                 <TextField required
                     id="outlined-basic" label="d_model" 
                     value={customTrainingArgs['d_model']} 
@@ -176,6 +239,59 @@ function CustomModelTrainingArgs() {
                     id="outlined-basic" label="n_layers" 
                     value={customTrainingArgs['n_layers']} 
                     onChange={handleChange_n_layers} 
+                />
+            </div>
+            <div>
+                <h1>Custom Training Hyperparameters (large-model)</h1>
+                <TextField required
+                    id="outlined-basic" label="d_model2" 
+                    value={customTrainingArgs['d_model2']} 
+                    onChange={handleChange_d_model2} 
+                />
+                <TextField required
+                    id="outlined-basic" label="debug2" 
+                    value={customTrainingArgs['debug2']} 
+                    onChange={handleChange_debug2} 
+                />
+                <TextField required
+                    id="outlined-basic" label="layer_norm_eps2" 
+                    value={customTrainingArgs['layer_norm_eps2']} 
+                    onChange={handleChange_layer_norm_eps2} 
+                />
+                <TextField required
+                    id="outlined-basic" label="d_vocab2" 
+                    value={customTrainingArgs['d_vocab2']} 
+                    onChange={handleChange_d_vocab2} 
+                />
+                <TextField required
+                    id="outlined-basic" label="init_range2" 
+                    value={customTrainingArgs['init_range2']} 
+                    onChange={handleChange_init_range2} 
+                />
+                <TextField required
+                    id="outlined-basic" label="n_ctx2" 
+                    value={customTrainingArgs['n_ctx2']} 
+                    onChange={handleChange_n_ctx2} 
+                />
+                <TextField required
+                    id="outlined-basic" label="d_head2" 
+                    value={customTrainingArgs['d_head2']} 
+                    onChange={handleChange_d_head2} 
+                />
+                <TextField required
+                    id="outlined-basic" label="d_mlp2" 
+                    value={customTrainingArgs['d_mlp2']} 
+                    onChange={handleChange_d_mlp2} 
+                />
+                <TextField required
+                    id="outlined-basic" label="n_heads2" 
+                    value={customTrainingArgs['n_heads2']} 
+                    onChange={handleChange_n_heads2} 
+                />
+                <TextField required
+                    id="outlined-basic" label="n_layers2" 
+                    value={customTrainingArgs['n_layers2']} 
+                    onChange={handleChange_n_layers2} 
                 />
             </div>
             <div>
