@@ -1,0 +1,33 @@
+.header {
+    background: #f0f0f0;
+    padding: 20px;
+    position: relative; /* Add position relative to the header */
+  }
+  
+  .headline {
+    margin: 0;
+    display: inline-block; /* Display the title as an inline block */
+  }
+  
+  .linkContainer {
+    position: absolute; /* Position the link container absolutely */
+    top: 50%; /* Adjust the top position */
+    right: 20px; /* Adjust the right position */
+    transform: translateY(-50%); /* Center vertically */
+  }
+  
+  .link {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+    padding: 8px 12px; /* Add padding to create button-like appearance */
+    background-color: #f8f8f8; /* Set a background color */
+    border: 1px solid black; /* Remove border */
+    border-radius: 4px; /* Add border radius */
+    font-weight: bold; /* Increase font weight */
+  }
+  
+  .link:hover {
+    background-color: #e8e8e8; /* Set a different background color on hover */
+  }
+  

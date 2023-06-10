@@ -1,8 +1,8 @@
 import React from 'react';
-// import './css/home.css';
+// import './css/about.css';
 import './../css/navbar.css';
 
-const Home = () => {
+const Doc = () => {
    
     return(
     <div>
@@ -13,11 +13,11 @@ const Home = () => {
             <a href="/doc" className="link">DOC</a>
             </div>
         </div>
-        <div className="home" style={{ padding: '20px', paddingTop: 0, fontSize: '14px' }}>
-            To do: A landing page with all about info here? Go sign in.
+        <div className="doc" style={{ padding: '20px', paddingTop: 0, fontSize: '14px' }}>
+            To do: A documentation-guide thing for users here?
         </div>
     </div>
     )
 }
- 
-export default Home;
+    
+export default Doc;

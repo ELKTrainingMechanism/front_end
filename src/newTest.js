@@ -21,7 +21,6 @@ const Teste = () => {
         console.error('Failed to fetch CSRF token:', error);
       }
     };
-
     fetchCsrfToken();
   }, []);
 
@@ -29,22 +28,19 @@ const Teste = () => {
     event.preventDefault();
 
     try {
-      // Perform a POST request to the Django backend
       await fetch('http://127.0.0.1:8000/api/post-data/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRFToken': csrfToken // Include the CSRF token in the headers
+          'X-CSRFToken': csrfToken
         },
         body: JSON.stringify({ inputValue })
       }).then(response => response.json())
       .then(data => {
-          // Handle response from Django backend
           setResponseData(data.message);
           setBounce(data.inputData);
       })
       .catch(error => {
-          // Handle error
           console.error(error);
       });
     } catch (error) {
