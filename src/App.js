@@ -11,7 +11,7 @@ import {onAuthStateChanged} from 'firebase/auth'
 import PrivateRoute from './PrivateRoute'
 import {Navigate} from 'react-router-dom'
 
-import Home from './page/Home';
+import Home from './page/home';
 import Doc from './page/Doc';
 import CustomModelTrainingArgs from './page/CustomModelTrainingArgs';
 

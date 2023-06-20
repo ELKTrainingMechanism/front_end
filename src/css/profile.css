@@ -1,0 +1,47 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .section {
+    flex: 1 1 25%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+  }
+  
+  .parameter-box {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .parameter-box > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .parameter-box > div span {
+    margin-right: 5px;
+  }
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
