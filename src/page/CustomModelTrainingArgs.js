@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { TextField, Button } from '@mui/material';
 import './../css/CustomModelTrainingArgs.css'; 
-import './../css/navbar.css';
 
 import { signOut } from 'firebase/auth' 
 import { auth } from './../firebase'
 
 import { getDatabase, ref, set, push, child, update } from "firebase/database";
 import { useAuthValue } from '../AuthContext';
+
+import Navbar from './Navbar.js'
 
 function CustomModelTrainingArgs() {
 
@@ -220,16 +221,7 @@ function CustomModelTrainingArgs() {
 
   return (
     <div>
-      <div className="header">
-      <h1 className="headline" style={{ fontSize: '20px' }}>gcetm.</h1>
-        <div className="linkContainer" style={{ fontSize: '14px' }}>
-          <a href="/" className="link">HOME</a>
-          <a href="/doc" className="link">DOC</a>
-          <a href="/train" className="link">TRAIN</a>
-          <a href="/profile" className="link">PROFILE</a>
-          <a href="/" className="link"><span onClick={() => signOut(auth)}>SIGN OUT</span></a>
-        </div>
-      </div>
+        <Navbar />
         <Box style={{ padding: '20px', paddingTop: 0, fontSize: '14px' }}
             component="form"
             sx={{

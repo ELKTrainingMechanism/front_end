@@ -7,7 +7,7 @@
   .section {
     flex: 1 1 25%;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: ;
     box-sizing: border-box;
     border: 1px solid #ccc;
   }
@@ -45,3 +45,8 @@
     margin-bottom: 10px;
   }
   
+
+
+
+
+

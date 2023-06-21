@@ -1,33 +1,94 @@
 .header {
-    background: #f0f0f0;
-    padding: 20px;
-    position: relative; /* Add position relative to the header */
-  }
-  
-  .headline {
-    margin: 0;
-    display: inline-block; /* Display the title as an inline block */
-  }
-  
-  .linkContainer {
-    position: absolute; /* Position the link container absolutely */
-    top: 50%; /* Adjust the top position */
-    right: 20px; /* Adjust the right position */
-    transform: translateY(-50%); /* Center vertically */
-  }
-  
-  .link {
-    margin-right: 10px;
-    text-decoration: none;
-    color: #333;
-    padding: 8px 12px; /* Add padding to create button-like appearance */
-    background-color: #f8f8f8; /* Set a background color */
-    border: 1px solid black; /* Remove border */
-    border-radius: 4px; /* Add border radius */
-    font-weight: bold; /* Increase font weight */
-  }
-  
-  .link:hover {
-    background-color: #e8e8e8; /* Set a different background color on hover */
-  }
-  
+  background: black;
+  padding: 5px 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.headline {
+  margin: 0;
+  font-size: 20px;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.dropdown {
+  margin-right: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.white-icon {
+  color: white;
+}
+
+.user-email {
+  margin-right: 5px;
+  font-size: 14px; /* Adjust the font size as desired */
+}
+
+.profile-picture {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.signout {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  margin-left: 10px; /* Add left padding to the "Sign Out" link */
+}
+
+.signout-text {
+  margin-right: 10px; /* Add spacing between text and arrow */
+}
+
+.signout:hover {
+  text-decoration: none;
+}
+
+.signin {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  margin-left: 10px; /* Add left padding to the "Sign Out" link */
+}
+
+.signin-text {
+  margin-right: 10px; /* Add spacing between text and arrow */
+}
+
+.signin:hover {
+  text-decoration: none;
+}
