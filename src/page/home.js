@@ -1,6 +1,7 @@
 import React from 'react';
 import './../css/home.css';
-
+import Img1 from './../trial_config.jpg';
+import Img2 from './../trial_results.jpg';
 import Navbar from './Navbar.js';
 import { Button } from '@mui/material';
 
@@ -49,6 +50,8 @@ const Home = () => {
 
           <h2>Base Results</h2>
           <p>We tested out our methodology on GPT2-models of the below configurations to get the compute-metrics you see here.</p>
+          <img src={Img1}></img>
+          <img src={Img2}></img>
         </div>
       </div>
     </div>
