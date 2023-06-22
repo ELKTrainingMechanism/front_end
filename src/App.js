@@ -33,9 +33,9 @@ function App() {
           <Route exact path='/' element={
             <Home />
           }/>
-          <Route path='/doc' element={
+          {/* <Route path='/doc' element={
             <Doc />
-          }/>
+          }/> */}
           <Route path="/login" element={
             !currentUser?.emailVerified 
             ? <Login/>

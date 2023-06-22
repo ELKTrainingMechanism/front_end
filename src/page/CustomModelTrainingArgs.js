@@ -3,10 +3,7 @@ import Box from '@mui/material/Box';
 import { TextField, Button } from '@mui/material';
 import './../css/CustomModelTrainingArgs.css'; 
 
-import { signOut } from 'firebase/auth' 
-import { auth } from './../firebase'
-
-import { getDatabase, ref, set, push, child, update } from "firebase/database";
+import { getDatabase, ref, push, child, update } from "firebase/database";
 import { useAuthValue } from '../AuthContext';
 
 import Navbar from './Navbar.js'
@@ -19,37 +16,40 @@ function CustomModelTrainingArgs() {
     const [responseData, setResponseData] = useState('');
     const [bounce, setBounce] = useState('');
     const [customTrainingArgs, setCustomTrainingArgs] = useState({
-        "d_model": 768, 
+        "d_model": 1, 
         "layer_norm_eps": 0.00005, 
         "init_range": 0.02, 
-        "d_head": 64, 
-        "d_mlp": 3072, 
-        "n_heads": 12, 
-        "n_layers": 12, 
-        "d_model2": 768, 
+        "d_head": 1, 
+        "d_mlp": 1, 
+        "n_heads": 1, 
+        "n_layers": 2, 
+        "d_model2": 2, 
         "layer_norm_eps2": 0.00005, 
         "init_range2": 0.02, 
-        "d_head2": 64, 
-        "d_mlp2": 3072, 
-        "n_heads2": 12, 
-        "n_layers2": 12, 
+        "d_head2": 2, 
+        "d_mlp2": 2, 
+        "n_heads2": 3, 
+        "n_layers2": 4, 
         "dataset": 'wikitext-103-raw-v1',
-        "n_ctx": 1024,
-        "batch_size": 8, 
+        "n_ctx": 256,
+        "batch_size": 2, 
         "num_epochs": 1,
-        "max_steps": 25000,
+        "max_steps": 2,
         "lr": 0.001,
         "weight_decay": 0.01,
         "gpu_ip": " ", 
         "username": " ", 
         "password": " ",
-        "small_perplexity": 0,
-        "scaled_perplexity": 0,
-        "large_perplexity": 0,
-        "small_cross_entropy": 0,
-        "scaled_cross_entropy": 0,
-        "large_cross_entropy": 0,
-        "runtime": 0,
+        "small_training_loss": '-',
+        "scaled_training_loss": '-',
+        "large_training_loss": '-',
+        "small_validation_loss": '-',
+        "scaled_validation_loss": '-',
+        "large_validation_loss": '-',
+        "small_perplexity": '-',
+        "scaled_perplexity": '-',
+        "large_perplexity": '-',
+        "runtime": '-',
     });
 
     const handleChange_d_model = (event) => {
@@ -163,41 +163,66 @@ function CustomModelTrainingArgs() {
       fetchCsrfToken();
     }, []);
 
-    function writeUserData(trainingArgs) {
-        var today = new Date()
-        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        var datetime = date + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    function writeTrainingData(trainingArgs) {
+        // var today = new Date()
+        // var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        // var datetime = date + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        const startTime = performance.now();
         const db = getDatabase();
-        // set(ref(db, 'users/' + currentUser.uid), {
-        //   uid: currentUser.uid,
-        //   username: currentUser.displayName,
-        //   email: currentUser.email,
-        //   currentlyTraining: true,
-        //   currentTrainingArgs: trainingArgs,
-        // });
-
-        const updateUser = {
-            uid: currentUser.uid,
-            username: currentUser.displayName,
-            email: currentUser.email,
-            currentlyTraining: true,
-            currentTrainingArgs: trainingArgs,
-          }
-
-        const newUserKey = push(child(ref(db), 'users/')).key;
         var updates = {};
-        updates['/users/' + newUserKey] = updateUser;
-        update(ref(db), updates);
 
         const newTrainingRunKey = push(child(ref(db), 'users/')).key;
         updates = {};
         updates['/users/' + currentUser.uid + '/allTrainingData/' + newTrainingRunKey] = trainingArgs;
         update(ref(db), updates);
+
+        console.log(newTrainingRunKey)
+        return {startTime, newTrainingRunKey};
     }
+
+    function writePerformanceData(startTime, trainingRunKey, metrics, callback) {
+        
+        const endTime = performance.now();
+        const runtime = endTime - startTime;
+        console.log(trainingRunKey)
+
+        const updatedTrainingArgs = {
+            ...customTrainingArgs,
+            small_training_loss: metrics['small_training_loss'].toFixed(3),
+            scaled_training_loss: metrics['scaled_training_loss'].toFixed(3),
+            large_training_loss: metrics['large_training_loss'].toFixed(3),
+            small_validation_loss: metrics['small_validation_loss'].toFixed(3),
+            scaled_validation_loss: metrics['scaled_validation_loss'].toFixed(3),
+            large_validation_loss: metrics['large_validation_loss'].toFixed(3),
+            small_perplexity: metrics['small_perplexity'].toFixed(3),
+            scaled_perplexity: metrics['scaled_perplexity'].toFixed(3),
+            large_perplexity: metrics['large_perplexity'].toFixed(3),
+            runtime: runtime,
+          };
+      
+        const db = getDatabase();
+        var updates = {};
+        updates['/users/' + currentUser.uid + '/allTrainingData/' + trainingRunKey] = updatedTrainingArgs;
+        // updates['/users/'] = null; // for deleting all users
+        update(ref(db), updates)
+          .then(() => {
+            if (callback) {
+              callback();
+            }
+          })
+          .catch((error) => {
+            console.error('Failed to update data:', error);
+          });
+      }
 
     const postCustomTrainingArgs = async (event) => {
         event.preventDefault();
-        writeUserData(customTrainingArgs);
+
+        // alert("Your inputs have been submitted! Please navigate to your profile to view the status of the run.")
+
+        var trainingRunWriteData = writeTrainingData(customTrainingArgs);
+        console.log(trainingRunWriteData['newTrainingRunKey'])
+
         try {
           await fetch('http://127.0.0.1:8000/api/post_custom_training_args/', {
             method: 'POST',
@@ -209,13 +234,16 @@ function CustomModelTrainingArgs() {
           }).then(response => response.json())
           .then(data => {
               setResponseData(data.message);
-              setBounce(data.output);
+              writePerformanceData(trainingRunWriteData['startTime'], trainingRunWriteData['newTrainingRunKey'], data.metrics, () => {
+                console.log('Performance data updated in the database');
+              });
           })
           .catch(error => {
               console.error(error);
+
           });
         } catch (error) {
-          console.error('Failed to post data:', error);
+          console.error('Failed to post data:', error); // add fail message on interface
         }
       };
 
@@ -232,6 +260,8 @@ function CustomModelTrainingArgs() {
             onSubmit={postCustomTrainingArgs}
             >
             <div>
+                <br/>
+                <p>Please do not navigate out of this page until the training is complete.</p>
                 <h1>Custom Training Hyperparameters (small-model)</h1>
                 <TextField required
                     id="outlined-basic" label="d_model" 
@@ -369,10 +399,9 @@ function CustomModelTrainingArgs() {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button style={{ marginRight: '10px' }} variant="contained" type="submit">Begin Training</Button>
             <Button style={{ marginLeft: '10px' }} variant="outlined" onClick={() => window.location.href = './profile'}>View Your Results</Button>
-            {/* <Button style={{ marginLeft: '10px' }} variant="outlined" onClick={() => writeUserData(24, "me", "me@mgmail.com", "umwha")}>View Your Results</Button> */}
             </div>
-            <p style={{ textAlign: 'center' }}>Response: {responseData}</p>
-            <p style={{ textAlign: 'center' }}>Bounce: {bounce}</p>
+            {/* <p style={{ textAlign: 'center' }}>Response: {responseData}</p>
+            <p style={{ textAlign: 'center' }}>Bounce: {bounce}</p> */}
             </div>
         </Box>
     </div>

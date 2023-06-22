@@ -1,52 +1,53 @@
 .container {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .section {
-    flex: 1 1 25%;
-    padding: 10px;
-    margin-top: ;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-  }
-  
-  .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; 
-  }
-  
-  .parameter-box {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  .parameter-box > div {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .parameter-box > div span {
-    margin-right: 5px;
-  }
-  
-  h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  
-  h4 {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.section {
+  flex: 1 1 25%;
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
 
+.content {
+  display: flex;
+  flex-direction: column;
+}
 
+.parameter-row {
+  display: flex;
+}
 
+.parameter-box {
+  flex: 1 1 50%;
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
+.parameter-box > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.parameter-box > div span {
+  margin-right: 5px;
+}
+
+.hyperparameters-box h3,
+.advanced-options-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* .performance-metrics-box {
+  height: 100%;
+} */

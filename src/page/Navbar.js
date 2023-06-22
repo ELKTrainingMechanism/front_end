@@ -18,10 +18,10 @@ function Navbar() {
         <div className="dropdown">
           <FontAwesomeIcon icon={faBars} className="white-icon" />
           <div className="dropdown-content">
-            <a href="/">HOME</a>
-            <a href="/doc">DOC</a>
-            <a href="/train">TRAIN</a>
-            <a href="/profile">PROFILE</a>
+            <a href="/">Home</a>
+            {/* <a href="/doc">DOC</a> */}
+            <a href="/train">Train</a>
+            <a href="/profile">Profile</a>
           </div>
         </div>
         <p className="user-email">{currentUser ? currentUser.email : null}</p>
