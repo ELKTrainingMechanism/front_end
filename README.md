@@ -12,8 +12,11 @@ In progress: We intend to add dataset configuration capabilities, interpretabili
 ## How To Implement
 
 Clone the frontend of the project.
+```git clone https://github.com/ELKTrainingMechanism/Frontend.git```
 
 Clone the backend of the project.
+```git clone https://github.com/ELKTrainingMechanism/backend.git```
+```pip install -r requirements.txt```
 
 Run both on your system to load up the interface.
 
