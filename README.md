@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# ELK TRAINING MECHANISM: KANGAROO
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Training generative language models that have, in the present day, scaled up to have parameters in the order of hundreds of billions, on humongous text datasets, requires a fair bit of infrastructure and is a rather expensive technique to execute. Moreover, specifically with regard to the field of AI Alignment, it would be difficult to ensure or even evaluate, a large model that is trained, to not in fact be a deceptive AI. 
 
-## Available Scripts
+A potential approach to not only significantly reduce the cost and resources required for such training but also to ensure that the generative model continues to be aligned upon scaling is to use smaller generative models to initialize larger ones for training. 
 
-In the project directory, you can run:
+Kangaroo aims to provide an interface for alignment researchers to initialize the weights of large language models with pre-trained smaller language models. Currently, with this interface, any user can utilize it to scale up models and compare performances of three models respectively, small, scaled and large. 
 
-### `npm start`
+In progress: We intend to add dataset configuration capabilities, interpretability techniques in the coming weeks as we explore mechanistic interpretability related to transformers.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How To Implement
 
-### `npm test`
+Clone the frontend of the project.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the backend of the project.
 
-### `npm run build`
+Run both on your system to load up the interface.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Once it's up and running, create an account to keep track of models of various parameters that you would like to train. (We will soon add capabilities to train without creating an account.)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once logged in, to begin training, go to 'Train', enter the respective parameter sizes you desire, the credentials of the GPU you wish to train this with, and submit the details. Do not close this page until training is complete!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Open the Profile page in a * new tab * and view the current status of the running model. Refreshing the Profile tab will lead to eventually displaying the results of the models in terms of cross-entropy and perplexity, as well as the time it took to run. We are endeavoring to add additional metrics soon.
